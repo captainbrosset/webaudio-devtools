@@ -1,0 +1,19 @@
+{
+  "name": "Web Audio",
+  "short_name": "WebAudio",
+  "version": "0.0.1",
+  "devtools_page": "devtools.html",
+  "description": "Inspect Web Audio contexts on a web page",
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": [ "webaudio-actor.js" ],
+    "run_at": "document_start",
+    "all_frames": true
+  } ],
+  "browser_action": {
+    "default_icon": {
+    },
+    "default_title": "DevTools"
+  },
+  "manifest_version": 2
+}

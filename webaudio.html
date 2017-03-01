@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="theme-light">
+<head>
+  <meta charset="utf-8">
+  <title>Web Audio</title>
+  <link rel="stylesheet" type="text/css" href="webaudio.css">
+  <!-- TODO:
+
+  Need the widget.css to have some common css
+  <?xml-stylesheet href="chrome://devtools/content/shared/widgets/widgets.css" type="text/css"?>
+  <?xml-stylesheet href="chrome://devtools/skin/widgets.css" type="text/css"?>
+
+  Need the localization strings
+  <!DOCTYPE window [
+    <!ENTITY % debuggerDTD SYSTEM "chrome://devtools/locale/webaudioeditor.dtd">
+    %debuggerDTD;
+  ]>
+
+  Need the theme switching
+  <script type="application/javascript;version=1.8"
+          src="chrome://devtools/content/shared/theme-switching.js"/>
+  -->
+
+  <!-- We can load these resources:// URLs, but not chrome:// URLs, but better than nothing  -->
+  <link rel="stylesheet" type="text/css" href="resource://devtools/client/themes/variables.css">
+  <link rel="stylesheet" type="text/css" href="resource://devtools/client/themes/common.css">
+  <link rel="stylesheet" type="text/css" href="resource://devtools/client/themes/toolbars.css">
+  <link rel="stylesheet" type="text/css" href="resource://devtools/client/shared/components/sidebar-toggle.css">
+</head>
+<body class="theme-body">
+  <!-- Appears only at first, asking to reload the page, or when there are no
+       webaudio contexts on the page -->
+  <div id="reload-notice" class="notice-container">
+    <!-- l10n string: webAudioEditorUI.reloadNotice1 -->
+    <button id="requests-menu-reload-notice-button" class="devtools-toolbarbutton" standalone="">Reload</button>
+    <!-- l10n string: webAudioEditorUI.reloadNotice2 -->
+    <label id="requests-menu-reload-notice-label">the page to view and edit the audio context.</label>
+  </div>
+
+  <!-- The throbber asking to wait -->
+  <div id="waiting-notice" class="notice-container devtools-throbber" hidden="true">
+    <!-- l10n string: webAudioEditorUI.emptyNotice -->
+    <label id="requests-menu-waiting-notice-label">Waiting for an audio context to be created…</label>
+  </div>
+
+  <!-- The actual content of the pane. -->
+  <div id="content" hidden="true">
+
+    <!-- The top global toolbar first -->
+    <div id="web-audio-toolbar" class="devtools-toolbar">
+      <button id="inspector-pane-toggle" class="devtools-button sidebar-toggle" tabindex="0"></button>
+    </div>
+
+    <!-- The audio graph (left side column) -->
+    <div id="web-audio-graph">
+      <svg id="graph-svg">
+        <g id="graph-target" transform="translate(20,20)"/>
+      </svg>
+    </div>
+
+    <!-- The properties panel (right side column) -->
+    <div id="web-audio-inspector">
+      <deck id="web-audio-editor-details-pane">
+        <vbox id="web-audio-editor-details-pane-empty">
+          <label value="&webAudioEditorUI.inspectorEmpty;"></label>
+        </vbox>
+        <tabbox id="web-audio-editor-tabs"
+                class="devtools-sidebar-tabs"
+                handleCtrlTab="false">
+          <toolbar id="audio-node-toolbar" class="devtools-toolbar">
+            <hbox class="devtools-toolbarbutton-group">
+              <toolbarbutton class="bypass devtools-toolbarbutton"
+                             data-command="bypass"
+                             tabindex="0"/>
+            </hbox>
+          </toolbar>
+          <tabs>
+            <tab id="properties-tab"
+                 label="&webAudioEditorUI.tab.properties2;"/>
+
+          </tabs>
+          <tabpanels>
+            <!-- Properties Panel -->
+            <tabpanel id="properties-tabpanel"
+                      class="tabpanel-content">
+              <vbox id="properties-content" hidden="true">
+              </vbox>
+              <vbox id="properties-empty" hidden="true">
+                <label value="&webAudioEditorUI.propertiesEmpty;"></label>
+              </vbox>
+            </tabpanel>
+
+          </tabpanels>
+        </tabbox>
+      </deck>
+    </div>
+
+  </div>
+
+  <script src="vendor/task.js"></script>
+  <script src="vendor/event-emitter.js"></script>
+  <script src="vendor/d3.min.js"></script>
+  <script src="vendor/dagre-d3.min.js"></script>
+  <script src="lib/includes.js"></script>
+  <script src="lib/audionodes-definition.js"></script>
+  <script src="lib/models.js"></script>
+  <script src="lib/controller.js"></script>
+  <script src="lib/views/utils.js"></script>
+  <script src="lib/views/context.js"></script>
+  <script src="lib/views/inspector.js"></script>
+  <script src="lib/views/properties.js"></script>
+  <script src="lib/init.js"></script>
+</body>
+</html>
