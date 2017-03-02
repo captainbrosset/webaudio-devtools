@@ -1,26 +1,7 @@
-var verbose = true;
-
-function log() {
-  if (!verbose) {
-    return;
-  }
-
-  console.log.apply(
-    console, [
-      '%c MyPanel ',
-      'background: #007AA3; color: #ffffff; text-shadow: 0 -1px #000; padding: 4px 0 4px 0; line-height: 0',
-      ...arguments
-    ]
-  );
-}
-
-log('content-scripts.js', window.location.toString());
-
-
-// /* This Source Code Form is subject to the terms of the Mozilla Public
-//  * License, v. 2.0. If a copy of the MPL was not distributed with this
-//  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-// "use strict";
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+"use strict";
 
 // // FIXME: REMOVE ALL REQUIRE FOR NOW.
 // // const { Cu } = require("chrome");
@@ -44,16 +25,6 @@ log('content-scripts.js', window.location.toString());
 // const AUDIO_GLOBALS = [
 //   "BaseAudioContext", "AudioContext", "AudioNode", "AudioParam"
 // ];
-
-// // Try some message passing with the panel
-// console.log("THIS IS A TEST FROM THE CONTENT SCRIPT")
-// function handleMessage(request, sender, sendResponse) {
-//   console.log("Message from the content script: " +
-//     request.greeting);
-//   sendResponse({response: "Response from background script"});
-// }
-
-// browser.runtime.onMessage.addListener(handleMessage);
 
 // /**
 //  * An Audio Node actor allowing communication to a specific audio node in the

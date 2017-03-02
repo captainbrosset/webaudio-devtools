@@ -9,11 +9,6 @@
     "js": [ "webaudio-actor.js" ],
     "run_at": "document_start",
     "all_frames": true
-  } ],
-  "browser_action": {
-    "default_icon": {
-    },
-    "default_title": "DevTools"
-  },
+  }],
   "manifest_version": 2
 }
