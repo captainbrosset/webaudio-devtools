@@ -3,6 +3,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 "use strict";
 
+// Try some message passing with the panel
+console.log("Sending a message from the content script")
+browser.runtime.sendMessage("from content script", (reply) => {
+  // browser.runtime.sendMessage(reply);
+});
+
+
 // // FIXME: REMOVE ALL REQUIRE FOR NOW.
 // // const { Cu } = require("chrome");
 // // const events = require("sdk/event/core");

@@ -10,5 +10,8 @@
     "run_at": "document_start",
     "all_frames": true
   }],
+  "background": {
+    "scripts": ["background-page.js"]
+  },
   "manifest_version": 2
 }
